@@ -28,9 +28,30 @@ document.addEventListener("DOMContentLoaded", () => {
             li.textContent = breeds;
             li.style.cursor = "pointer";
             ulDogBreeds.append(li);
+
+            // Challenge 3
             li.addEventListener("click", () => {
                li.style.color = "red";
             });
          });
       });
+
+   //   Challenge 4
+   let newDogBreedArray = [];
+   const dogBreedDropdown = document.getElementById("breed-dropdown");
+   dogBreedDropdown.addEventListener("change", (e) => {
+      const letter = e.target.value;
+      fetch(breedUrl)
+         .then((res) => res.json())
+         .then((breeds) => {
+            const dogBreedsArray = Object.keys(breeds.message);
+            const filteredDogsBreeds = dogBreedsArray.filter((breed) => breed.startsWith(letter));
+            ulDogBreeds.innerHTML = "";
+            filteredDogsBreeds.forEach((breeds) => {
+               const li = document.createElement("li");
+               li.textContent = breeds;
+               ulDogBreeds.append(li);
+            });
+         });
+   });
 });
