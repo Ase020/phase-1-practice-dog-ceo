@@ -28,6 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
             li.textContent = breeds;
             li.style.cursor = "pointer";
             ulDogBreeds.append(li);
+            li.addEventListener("click", () => {
+               li.style.color = "red";
+            });
          });
       });
 });
